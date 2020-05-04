@@ -15,7 +15,7 @@ const CovidDashboard = (props) => {
     }
 
     const [listPatient, setListPatient] = useState();
-    const loadList = (list) =>{
+    const onLoadListHandler = (list) =>{
         setListPatient(list);
     }
 
@@ -28,10 +28,11 @@ const CovidDashboard = (props) => {
     console.log('Covid Dashboard render');
     return <Container>
         <Row>
-            <Col><PatientList forwardedRef={PatientRef} /></Col>
+            <Col><PatientList list={listPatient} /></Col>
             <Col xs={8}>
                 <CovidMap
                     onPatientMarkerClicked={patientMarkerClickedHandler}
+                    onLoadList={onLoadListHandler}
                      />
             </Col>
 
