@@ -28,7 +28,9 @@ const CovidDashboard = (props) => {
     console.log('Covid Dashboard render');
     return <Container>
         <Row>
-            <Col><PatientList list={listPatient} /></Col>
+            <Col>
+                {listPatient && <PatientList Patients={listPatient} />}
+                </Col>
             <Col xs={8}>
                 <CovidMap
                     onPatientMarkerClicked={patientMarkerClickedHandler}

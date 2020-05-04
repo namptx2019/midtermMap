@@ -3,18 +3,17 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import SimpleBar from 'simplebar-react';
 import 'simplebar/dist/simplebar.min.css';
 
-const PatientList = (list) => {
-     
-    const listPatients= list.map((patient, index) => {
+
+const PatientList = ({Patients}) => {
+             
+    const listPatients = Patients.map((patient,index) => {
         return (
-            <ListGroup.Item eventKey={index} action >
-                <div key={index}>
-                    Name: {patient.name}, Verify Date: {patient.verifyDate}
-                </div>
-            </ListGroup.Item>
+            <ListGroup.Item action >
+                Name: {patient.name}, Verify Date: {patient.verifyDate}
+           </ListGroup.Item>
         )
     })
-        
+
     return(
         <SimpleBar style={{ maxHeight: `80vh`, maxWidth: `50vh` }}>
             <ListGroup>

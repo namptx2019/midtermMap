@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
+import MarkerPatient from './MarkerPatient';
 
 const CovidMap = ({onPatientMarkerClicked, onPatientScroll, onLoadList}) => {
     const [patients, setPatients] = useState([]);
@@ -24,16 +25,14 @@ const CovidMap = ({onPatientMarkerClicked, onPatientScroll, onLoadList}) => {
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
         />
-        {patients.map(patient => <Marker position={[patient.lat, patient.lng]} onLoadList={patients} onClick={() => {onPatientMarkerClicked(patient)}}>
-            <Popup>
-                <ul>
-                    <li>Name: {patient.name}</li>
-                    <li>Address: {patient.address}</li>
-                    <li>Note: {patient.note}</li>
-                    <li>Verify date: {patient.verifyDate}</li>
-                </ul>
-            </Popup>
-        </Marker>)}
+        {patients.map((patient,index) =>{
+            return <MarkerPatient
+                key={index}
+                patient={patient}
+                onPatientMarkerClicked={onPatientMarkerClicked}
+                onLoadList={onLoadList}
+                patients={patients}/>
+        })} 
     </Map>;
 };
 
