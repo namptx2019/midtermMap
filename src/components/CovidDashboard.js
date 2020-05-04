@@ -42,7 +42,7 @@ const CovidDashboard = (props) => {
                     {listPatient && <PatientList Patients={listPatient} selectedPatient={patientMarkerClickedHandler} currentPatient={currentPatient} />}
                 </div>
                 
-                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px'}}>
+                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px', height: '38vh'}}>
                     <h5 style={{textAlign:"center", paddingTop: '5px'}}>Patient Infor</h5>
                     {currentPatient &&
                     <PatientInfo id="patient-info" name={currentPatient.name} address={currentPatient.address} note={currentPatient.note}
