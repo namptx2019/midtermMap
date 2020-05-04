@@ -5,7 +5,9 @@ const MarkerPatient = ({key, patient, patients, onPatientMarkerClicked, onLoadLi
     return <Marker key={key} position={[patient.lat, patient.lng]}
         onClick={() => {onPatientMarkerClicked(patient);
             let elm = document.getElementById("selected-item");
+            console.log(elm);
             if (elm){
+                console.log('click Marker!')
                 elm.scrollIntoView(true, { behavior: 'smooth' });
             }
         }}

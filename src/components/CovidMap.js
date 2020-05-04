@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import MarkerPatient from './MarkerPatient';
 
-const CovidMap = ({onPatientMarkerClicked, onPatientScroll, onLoadList}) => {
+const CovidMap = ({onPatientMarkerClicked, onLoadList}) => {
     const [patients, setPatients] = useState([]);
     useEffect(() => {
         fetch("https://maps.vnpost.vn/apps/covid19/api/patientapi/list")

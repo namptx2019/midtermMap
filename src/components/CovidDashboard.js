@@ -26,11 +26,9 @@ const CovidDashboard = (props) => {
     }
   
     console.log('Covid Dashboard render');
-    return <Container>
+    return(
+    <Container>
         <Row>
-            <Col>
-                {listPatient && <PatientList Patients={listPatient} />}
-                </Col>
             <Col xs={8}>
                 <CovidMap
                     onPatientMarkerClicked={patientMarkerClickedHandler}
@@ -39,13 +37,22 @@ const CovidDashboard = (props) => {
             </Col>
 
             <Col>
-                {currentPatient &&
-                <PatientInfo name={currentPatient.name} address={currentPatient.address} note={currentPatient.note}
-                             verifyDate={currentPatient.verifyDate}/>}
+                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px', marginBottom: '10px'}}>
+                    <h5 style={{textAlign:"center", paddingTop: '5px'}}>List Patients</h5>
+                    {listPatient && <PatientList Patients={listPatient} selectedPatient={patientMarkerClickedHandler} currentPatient={currentPatient} />}
+                </div>
+                
+                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px'}}>
+                    <h5 style={{textAlign:"center", paddingTop: '5px'}}>Patient Infor</h5>
+                    {currentPatient &&
+                    <PatientInfo id="patient-info" name={currentPatient.name} address={currentPatient.address} note={currentPatient.note}
+                                verifyDate={currentPatient.verifyDate}/>}
+                </div>
+                
             </Col>
 
         </Row>
-    </Container>
+    </Container>)
 };
 
 export default CovidDashboard;
