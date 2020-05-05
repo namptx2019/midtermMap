@@ -7,6 +7,7 @@ import PatientList from "./PatientList";
 import Container from "react-bootstrap/Container";
 import CovidMap from "./CovidMap";
 import SliderBar from "./Slider";
+import SeekBar from './PlayPause';
 
 
 const CovidDashboard = (props) => {
@@ -31,23 +32,24 @@ const CovidDashboard = (props) => {
     <Container>
         <Row>
             <Col xs={8}>
-                <CovidMap
-                    onPatientMarkerClicked={patientMarkerClickedHandler}
-                    onLoadList={onLoadListHandler}
+                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px', marginBottom: '10px',height: '700px'}}>
+                    <h4 style={{textAlign:"center", paddingTop: '5px'}}>Covid Map</h4>
+                    <hr/>
+                    <CovidMap
+                        onPatientMarkerClicked={patientMarkerClickedHandler}
+                        onLoadList={onLoadListHandler}
                      />
-                <div style={{marginTop: '5vh'}}>
-                    <SliderBar/>
+                    <SeekBar/>
                 </div>
-                
             </Col>
 
             <Col>
-                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px', marginBottom: '10px'}}>
+                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px', marginBottom: '10px', height: '390px', marginBottom: '10px'}}>
                     <h5 style={{textAlign:"center", paddingTop: '5px'}}>List Patients</h5>
                     {listPatient && <PatientList Patients={listPatient} selectedPatient={patientMarkerClickedHandler} currentPatient={currentPatient} />}
                 </div>
                 
-                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '15px', paddingBottom: '50px', height: '38vh'}}>     
+                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '15px', paddingBottom: '50px', height: '300px'}}>     
                     <h5 style={{textAlign:"center", paddingTop: '5px'}}>Patient Infor</h5>
                     <hr/>
                     {currentPatient &&

@@ -23,7 +23,7 @@ const PatientList = ({Patients, selectedPatient, currentPatient}) => {
       }); 
 
     return(
-        <SimpleBar style={{ maxHeight: `30vh`, maxWidth: `50vh` }}>
+        <SimpleBar style={{ maxHeight: '300px', maxWidth: '400px' }}>
             <ListGroup key={Patients.id}>
                 {listPatients}
             </ListGroup>

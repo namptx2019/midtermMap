@@ -20,7 +20,7 @@ const CovidMap = ({onPatientMarkerClicked, onLoadList}) => {
                 }
             )
     }, [])
-    return <Map center={[10.762887, 106.6800684]} zoom={13} style={{height: `80vh`}}>
+    return <Map center={[10.762887, 106.6800684]} zoom={13} style={{height: `500px`}}>
         <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.osm.org/{z}/{x}/{y}.png"
