@@ -6,6 +6,7 @@ import PatientInfo from "./PatientInfo";
 import PatientList from "./PatientList";
 import Container from "react-bootstrap/Container";
 import CovidMap from "./CovidMap";
+import SliderBar from "./Slider";
 
 
 const CovidDashboard = (props) => {
@@ -34,6 +35,10 @@ const CovidDashboard = (props) => {
                     onPatientMarkerClicked={patientMarkerClickedHandler}
                     onLoadList={onLoadListHandler}
                      />
+                <div style={{marginTop: '5vh'}}>
+                    <SliderBar/>
+                </div>
+                
             </Col>
 
             <Col>
@@ -42,8 +47,9 @@ const CovidDashboard = (props) => {
                     {listPatient && <PatientList Patients={listPatient} selectedPatient={patientMarkerClickedHandler} currentPatient={currentPatient} />}
                 </div>
                 
-                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '10px', paddingBottom: '50px', height: '38vh'}}>
+                <div style={{borderRadius: '5px', backgroundColor: 'white', padding: '15px', paddingBottom: '50px', height: '38vh'}}>     
                     <h5 style={{textAlign:"center", paddingTop: '5px'}}>Patient Infor</h5>
+                    <hr/>
                     {currentPatient &&
                     <PatientInfo id="patient-info" name={currentPatient.name} address={currentPatient.address} note={currentPatient.note}
                                 verifyDate={currentPatient.verifyDate}/>}
