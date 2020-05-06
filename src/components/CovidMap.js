@@ -2,14 +2,16 @@ import React, {useEffect, useState} from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import MarkerPatient from './MarkerPatient';
 
-const CovidMap = ({onPatientMarkerClicked, onLoadList}) => {
+const CovidMap = ({onPatientMarkerClicked, onLoadList, staticData}) => {
     const [patients, setPatients] = useState([]);
-    useEffect(() => {
-        fetch("https://maps.vnpost.vn/apps/covid19/api/patientapi/list")
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    useEffect(async () => {
+        await fetch("https://maps.vnpost.vn/apps/covid19/api/patientapi/list")
             .then(res => res.json())
             .then(
                 (result) => {
                     setPatients(result.data);
+                    staticData(result.data);
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -19,7 +21,8 @@ const CovidMap = ({onPatientMarkerClicked, onLoadList}) => {
                     // setError(error);
                 }
             )
-    }, [])
+    },[]);
+
     return <Map center={[10.762887, 106.6800684]} zoom={13} style={{height: `500px`}}>
         <TileLayer
             attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'

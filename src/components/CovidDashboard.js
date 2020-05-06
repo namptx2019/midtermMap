@@ -7,7 +7,7 @@ import PatientList from "./PatientList";
 import Container from "react-bootstrap/Container";
 import CovidMap from "./CovidMap";
 import SliderBar from "./Slider";
-import SeekBar from './PlayPause';
+import SeekBar from './SeekBar';
 
 
 const CovidDashboard = (props) => {
@@ -21,12 +21,11 @@ const CovidDashboard = (props) => {
         setListPatient(list);
     }
 
-    let PatientRef = useRef(null);
-
-    const handlerScroll = () => {
-        PatientRef.current.scrollIntoView({block:"start"});
+    const [data, setData] = useState();
+    const loadstaticData =(staticdata) =>{
+        setData(staticdata);
     }
-  
+
     console.log('Covid Dashboard render');
     return(
     <Container>
@@ -38,8 +37,9 @@ const CovidDashboard = (props) => {
                     <CovidMap
                         onPatientMarkerClicked={patientMarkerClickedHandler}
                         onLoadList={onLoadListHandler}
+                        staticData = {loadstaticData}
                      />
-                    <SeekBar/>
+                    {data && <SeekBar Patients={data} onLoadList={onLoadListHandler}/>}
                 </div>
             </Col>
 

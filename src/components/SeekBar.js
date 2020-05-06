@@ -46,20 +46,25 @@ class SeekBar extends React.Component {
     }
   }
 
+
+
   render() {
     const { isPlaying } = this.state
+    let play = false;
 
     return(
       <div style={{height:'50px', marginTop: '50px'}}>
             <div style={{float:'left', marginLeft: '10px'}}>
                 <PlayPause
                   toggle={isPlaying}
-                  onClick={() => this.setState({isPlaying: !isPlaying})}
+                  onClick={() => {
+                    this.setState({isPlaying: !isPlaying});
+                  }}
                 />
             </div>
             
             <div style={{marginLeft: '50px', marginRight: '20px'}}>
-              <SliderBar/>
+              <SliderBar patients={this.props.Patients} onLoadList={this.props.onLoadList} play={this.state.isPlaying}/>
             </div>
       </div>
     )
