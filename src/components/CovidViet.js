@@ -5,38 +5,26 @@ import axios from 'axios';
 const StatsVN = () => {
     
     
-    const [dataVN, setDataVN] = useState([]);
+    const [virusVn, setVirusVn] = useState([]);
 
-    useEffect(() => {
-            
+    useEffect(() => {    
         axios.get('https://td.fpt.ai/corona/corona-chart-vn.json')
         .then(function (response) {
-          
-          
-            setDataVN(response.data)
-          
+            setVirusVn(response.data)
         })
-        .catch(function (error) {
-         
-          console.log(error);
-        })
-        .then(function () {
-          
-        });
      }, []);
   
   
      
-    const ChartVN = () => (
+    return(
         <div className="App">
         {
            <Line
             data = {
               {
-
-                labels:  Object.keys(dataVN).map((key)=>key),
+                labels:  Object.keys(virusVn).map((key)=>key),
                 datasets:[{
-                      data: Object.keys(dataVN).map((key)=>dataVN[key][0]),
+                      data: Object.keys(virusVn).map((key)=>virusVn[key][0]),
                       label:"Số ca nhiễm",
                       fill:true,
                       lineTension: 0.1,
@@ -56,7 +44,7 @@ const StatsVN = () => {
                       pointHitRadius: 10,
                 },
                 {
-                      data: Object.keys(dataVN).map((key)=>dataVN[key][1]),
+                      data: Object.keys(virusVn).map((key)=>virusVn[key][1]),
                       label:"Số ca nghi nhiễm",
                       fill:true,
                       lineTension: 0.1,
@@ -77,7 +65,7 @@ const StatsVN = () => {
                      
                 },
                 {
-                      data: Object.keys(dataVN).map((key)=>dataVN[key][2]),
+                      data: Object.keys(virusVn).map((key)=>virusVn[key][2]),
                       label:"Số ca đã phục hồi",
                       fill:true,
                       lineTension: 0.1,
@@ -94,17 +82,13 @@ const StatsVN = () => {
                       pointHoverBorderColor: 'rgb(0, 0, 255)',
                       pointHoverBorderWidth: 2,
                       pointRadius: 1,
-                      pointHitRadius: 10,
-                      
-                }
-                ]
+                      pointHitRadius: 10,   
+                }]
               }
             }
            />
         }
-      		
-     </div>     
-      );
-      return <ChartVN></ChartVN>
+        </div>     
+    )
 }
 export default  StatsVN

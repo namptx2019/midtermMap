@@ -5,29 +5,28 @@ import axios from 'axios';
 
 
 const StatTotal = () => {
-    const [dataTotal, setDataTotal] = useState([]);
+
+    const [worldTotal, setWorldTotal] = useState([]);
 
     useEffect(() => {
         axios.get('https://td.fpt.ai/corona/corona-total.json')
         .then(function (response) {
-            setDataTotal(response.data)         
+            setWorldTotal(response.data)         
         })
         .catch(function (error) {
           console.log(error);
         });     
      }, []);
-    const ChartTotal = () => (
-      
+
+    return(
         <div className="App">
         {
-          
-        
            <Line
             data = {
               {
-                labels:  Object.keys(dataTotal).map((key)=>key),
+                labels:  Object.keys(worldTotal).map((key)=>key),
                 datasets:[{
-                      data: Object.keys(dataTotal).map((key)=>dataTotal[key][0]),
+                      data: Object.keys(worldTotal).map((key)=>worldTotal[key][0]),
                       label:"Số ca nhiễm",               
                       fill:true,
                       lineTension: 0.1,
@@ -47,7 +46,7 @@ const StatTotal = () => {
                       pointHitRadius: 10,
                 },
                 {
-                      data: Object.keys(dataTotal).map((key)=>dataTotal[key][1]),
+                      data: Object.keys(worldTotal).map((key)=>worldTotal[key][1]),
                       label:"Số ca tử vong",
                       fill:true,
                       lineTension: 0.1,
@@ -67,7 +66,7 @@ const StatTotal = () => {
                       pointHitRadius: 10,
                 },
                 {
-                      data: Object.keys(dataTotal).map((key)=>dataTotal[key][2]),
+                      data: Object.keys(worldTotal).map((key)=>worldTotal[key][2]),
                       label:"Số ca phục hồi",
                       fill:true,
                       lineTension: 0.1,
@@ -97,6 +96,5 @@ const StatTotal = () => {
      </div>
         
       );
-      return <ChartTotal></ChartTotal>
 }
 export default  StatTotal

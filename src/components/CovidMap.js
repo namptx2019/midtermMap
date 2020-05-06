@@ -7,21 +7,14 @@ const CovidMap = ({onPatientMarkerClicked, onLoadList, staticData, loadPatientOn
     const [center, setCenter] = useState(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(async () => {
-        await fetch("https://maps.vnpost.vn/apps/covid19/api/patientapi/list")
+    useEffect(() => {
+        fetch("https://maps.vnpost.vn/apps/covid19/api/patientapi/list")
             .then(res => res.json())
             .then(
                 (result) => {
                     setPatients(result.data);
                     staticData(result.data);
                 },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    // setIsLoaded(true);
-                    // setError(error);
-                }
             )
     },[]);
 
