@@ -50,7 +50,6 @@ class SeekBar extends React.Component {
 
   render() {
     const { isPlaying } = this.state
-    let play = false;
 
     return(
       <div style={{height:'50px', marginTop: '50px'}}>

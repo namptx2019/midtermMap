@@ -11,6 +11,7 @@ import { waitForDomChange } from '@testing-library/react';
 const firstDate = '2019-12-08T00:00:00';
 const startDate = Date.parse(firstDate);
 const secPerDay = 86400000;
+const firstCovDate = parseInt(startDate/secPerDay)
 const currentDate = parseInt((Date.now() - startDate)/secPerDay);
 
 const ToolTip = (dateData) =>{
@@ -53,9 +54,7 @@ const SliderBar = ({patients, onLoadList, play}) => {
 
   
   const marker = MakeTooltipData(patients);
-  console.log("marker");
-  console.log(marker);
-  console.log(play);
+
 
   const [value, setValue] = React.useState(1);
 
@@ -78,26 +77,22 @@ const SliderBar = ({patients, onLoadList, play}) => {
     return () => clearInterval(interval);
   }, [play, value, marker, onLoadList]);
 
-    const handleChange = (event, newValue) => {
-      onLoadList(marker[newValue].list_patient);
-      setValue(newValue);
+    const handleChange = (event, changeValue) => {
+      onLoadList(marker[changeValue].list_patient);
+      setValue(changeValue);
     };
 
-    function valueLabelFormat(value) {
-      return null;
-    }
-
     return(
-      <Slider
-        value={value}
-        min={0}
-        step={1}
-        max={currentDate}
-        valueLabelFormat={valueLabelFormat}
-        valueLabelDisplay="auto"
-        getAriaValueText={valueLabelFormat}
-        onChange={handleChange}
-      />
+      <div>
+        <h8>Timeline: {marker[value].label}</h8>
+        <Slider
+          value={value}
+          min={0}
+          step={1}
+          max={currentDate}
+          onChange={handleChange}
+        />
+      </div>
     )
 }
 

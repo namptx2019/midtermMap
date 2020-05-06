@@ -38,6 +38,8 @@ const CovidDashboard = (props) => {
                         onPatientMarkerClicked={patientMarkerClickedHandler}
                         onLoadList={onLoadListHandler}
                         staticData = {loadstaticData}
+                        loadPatientOnTime = {listPatient}
+                        currentPatient ={currentPatient}
                      />
                     {data && <SeekBar Patients={data} onLoadList={onLoadListHandler}/>}
                 </div>

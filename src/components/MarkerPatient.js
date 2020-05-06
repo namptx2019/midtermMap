@@ -11,7 +11,7 @@ const MarkerPatient = ({key, patient, patients, onPatientMarkerClicked, onLoadLi
                 elm.scrollIntoView(true, { behavior: 'smooth' });
             }
         }}
-        onadd={()=> {
+        onAdd={()=> {
             onLoadList(patients);
         }}>
         
